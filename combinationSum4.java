@@ -67,3 +67,24 @@ class Solution {
         return ans;
     }
 }
+
+***********************
+
+class Solution {
+    int[] counts;
+    public int combinationSum4(int[] nums, int target) {
+        counts=new int[target+1];
+        Arrays.fill(counts,-1);
+        counts[0]=1;
+        return helper(nums,target);
+    }
+    public int helper(int[] nums, int target) {
+        if (counts[target]>-1) return counts[target];
+        int ans=0;
+        for (int i=0;i<nums.length;i++) {
+            if (nums[i]<=target) ans+=helper(nums, target-nums[i]);
+        }
+        counts[target]=ans;
+        return ans;
+    }
+}
